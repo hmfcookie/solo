@@ -1,5 +1,5 @@
 <p align = "center">
-<img alt="Solo" src="https://user-images.githubusercontent.com/873584/52320401-2593e600-2a0a-11e9-9ba1-db79ee71d1af.png">
+<img alt="Solo" src="https://b3log.org/images/brand/solo-128.png">
 <br><br>
 小而美的博客系统，专为程序员设计
 <br><br>
@@ -7,12 +7,12 @@
 <a title="Docker Image CI" target="_blank" href="https://github.com/88250/solo/actions"><img src="https://img.shields.io/github/workflow/status/88250/solo/Docker%20Image%20CI?color=blue&label=Actions&logo=github&style=flat-square"></a>
 <a title="Coverage Status" target="_blank" href="https://coveralls.io/github/88250/solo"><img src="https://img.shields.io/coveralls/github/88250/solo.svg?style=flat-square&color=CC9933"></a>
 <a title="Code Size" target="_blank" href="https://github.com/88250/solo"><img src="https://img.shields.io/github/languages/code-size/88250/solo.svg?style=flat-square&color=6699FF"></a>
-<a title="AGPLv3" target="_blank" href="https://www.gnu.org/licenses/agpl-3.0.txt"><img src="http://img.shields.io/badge/license-AGPLv3-orange.svg?style=flat-square"></a>
+<a title="MulanPSL2" target="_blank" href="https://license.coscl.org.cn/MulanPSL2"><img src="http://img.shields.io/badge/license-MulanPSL2-orange.svg?style=flat-square"></a>
 <br>
 <a title="Releases" target="_blank" href="https://github.com/88250/solo/releases"><img src="https://img.shields.io/github/release/88250/solo.svg?style=flat-square&color=CC6666"></a>
 <a title="Release Date" target="_blank" href="https://github.com/88250/solo/releases"><img src="https://img.shields.io/github/release-date/88250/solo.svg?style=flat-square&color=99CCFF"></a>
 <a title="Downloads" target="_blank" href="https://github.com/88250/solo/releases"><img src="https://img.shields.io/github/downloads/88250/solo/total.svg?style=flat-square&color=99CC99"></a>
-<a title="Docker Pulls" target="_blank" href="https://hub.docker.com/r/88250/solo"><img src="https://img.shields.io/docker/pulls/88250/solo.svg?style=flat-square&color=blueviolet"></a>
+<a title="Docker Pulls" target="_blank" href="https://hub.docker.com/r/b3log/solo"><img src="https://img.shields.io/docker/pulls/b3log/solo.svg?style=flat-square&color=blueviolet"></a>
 <br>
 <a title="GitHub Commits" target="_blank" href="https://github.com/88250/solo/commits/master"><img src="https://img.shields.io/github/commit-activity/m/88250/solo.svg?style=flat-square"></a>
 <a title="Last Commit" target="_blank" href="https://github.com/88250/solo/commits/master"><img src="https://img.shields.io/github/last-commit/88250/solo.svg?style=flat-square&color=FF9900"></a>
@@ -25,72 +25,76 @@
 <a title="Author GitHub Followers" target="_blank" href="https://github.com/88250"><img src="https://img.shields.io/github/followers/88250.svg?label=Followers&style=social"></a>
 </p>
 
+<p align="center">
+<a href="https://github.com/88250/solo/blob/master/README_en_US.md">English</a>
+</p>
+
 ## 💡 简介
 
-[Solo](https://solo.b3log.org) 是一款小而美的开源博客系统，专为程序员设计。Solo 有着非常活跃的[社区](https://hacpai.com)，可将文章作为帖子推送到社区，来自社区的回帖将作为博客评论进行联动（具体细节请浏览 [B3log 构思 - 分布式社区网络](https://hacpai.com/article/1546941897596)）。
+[Solo](https://b3log.org/solo) 是一款小而美的开源博客系统，专为程序员设计。Solo 有着非常活跃的[社区](https://ld246.com)，可将文章作为帖子推送到社区，来自社区的回帖将作为博客评论进行联动（具体细节请浏览 [B3log 构思 - 分布式社区网络](https://ld246.com/article/1546941897596)）。
 
 > 这是一种全新的网络社区体验，让热爱记录和分享的你不再感到孤单！
 
-欢迎到 [Solo 官方讨论区](https://hacpai.com/tag/sym)了解更多。同时也欢迎关注 B3log 开源社区微信公众号 `B3log开源`：
+欢迎到 [Solo 官方讨论区](https://ld246.com/tag/solo)了解更多。同时也欢迎关注 B3log 开源社区微信公众号 `B3log开源`：
 
-![b3logos.png](https://img.hacpai.com/file/2019/10/image-d3c00d78.png)
+![b3logos.jpg](https://b3logfile.com/file/2020/08/b3logos-032af045.jpg)
 
 ## 🗃 案例
 
-https://hacpai.com/top/solo
+https://ld246.com/top/solo
 
 ## ✨ 功能
 
-* Markdown / Emoji
-* [标签聚合分类](https://hacpai.com/article/1558320086126)
+* [Markdown 编辑器](https://github.com/Vanessa219/vditor)支持三种编辑模式：所见即所得 / 即时渲染 / 分屏预览
+* [标签聚合分类](https://ld246.com/article/1558320086126)
 * 自定义导航链接
 * 随机文章 / 相关文章 / 置顶 / 更新提醒
 * 自定义文章永久链接 / 签名档
 * 配置站点 SEO 参数 / 公告 / 页脚
 * 代码高亮 / 数学公式 / 流程图 / 五线谱
-* [多皮肤，多端适配](https://github.com/88250/solo-skins) / [社区皮肤](https://github.com/88250/solo-third-skins)
+* [多皮肤，多端适配](https://b3log.org/solo/#themes)
 * 多语言 / 国际化
 * 友情链接管理
 * 多用户写作，团队博客
-* [Hexo / Jekyll / Markdown 导入](https://hacpai.com/article/1498490209748)
+* [Hexo / Jekyll / Markdown 导入](https://ld246.com/article/1498490209748)
 * SQL / JSON / Markdown 导出
 * Atom / RSS / Sitemap
-* CDN 静态资源分离
-* [拉取 GitHub 仓库和自动备份](https://hacpai.com/article/1557238327458)
-* [内置 HTTPS+CDN 文件存储](https://hacpai.com/article/1559928188793)
-* [支持生成导出静态站点](https://hacpai.com/article/1579053576274)，用于发布 GitHub Pages
+* CDN 静态资源分离，可配置 jsDelivr CDN 分发
+* [拉取 GitHub 仓库和自动备份](https://ld246.com/article/1557238327458)
+* [内置 HTTPS+CDN 文件存储](https://ld246.com/article/1559928188793)
+* [支持生成导出静态站点](https://ld246.com/article/1579053576274)，用于发布 GitHub Pages
 
 ## 🎨 界面
 
 ### 开始使用
 
-![start.png](https://img.hacpai.com/file/2020/03/start-6fec3c72.png)
+![start.png](https://b3logfile.com/file/2020/03/start-6fec3c72.png)
 
 ### 后台首页
 
-![console.png](https://img.hacpai.com/file/2020/03/console-ff45ec74.png)
+![console.png](https://b3logfile.com/file/2020/03/console-ff45ec74.png)
 
 ### 编辑文章
 
-![post.png](https://img.hacpai.com/file/2020/03/post-acb91edb.png)
+![post.png](https://b3logfile.com/file/2020/03/post-acb91edb.png)
 
 ### 选择皮肤
 
-![skins.png](https://img.hacpai.com/file/2019/08/61179517afd61b00a63611e987d5ddea6d6a0fc9-0d368d02.png)
+![skins.png](https://b3logfile.com/file/2019/08/61179517afd61b00a63611e987d5ddea6d6a0fc9-0d368d02.png)
 
 ### 前台界面
 
-![pinghsu.png](https://img.hacpai.com/file/2020/03/pinghsu-91c48743.png)
+![pinghsu.png](https://b3logfile.com/file/2020/03/pinghsu-91c48743.png)
 
-![Bubble.png](https://img.hacpai.com/file/2020/03/Bubble-84bee365.png)
+![Bubble.png](https://b3logfile.com/file/2020/03/Bubble-84bee365.png)
 
-![nijigen.png](https://img.hacpai.com/file/2020/03/nijigen-30de3aaa.png)
+![nijigen.png](https://b3logfile.com/file/2020/03/nijigen-30de3aaa.png)
 
-![timeline.png](https://img.hacpai.com/file/2020/03/timeline-094af4c3.png)
+![timeline.png](https://b3logfile.com/file/2020/03/timeline-094af4c3.png)
 
-![Casper.png](https://img.hacpai.com/file/2020/03/Casper-2d5ed59d.png)
+![Casper.png](https://b3logfile.com/file/2020/03/Casper-2d5ed59d.png)
 
-![Jane.png](https://img.hacpai.com/file/2020/03/Jane-55b0414c.png)
+![Jane.png](https://b3logfile.com/file/2020/03/Jane-55b0414c.png)
 
 ## 🍱 皮肤
 
@@ -117,7 +121,7 @@ https://hacpai.com/top/solo
 * [tree-house](https://88250.b3log.org/?skin=tree-house)
 * [yilia](https://88250.b3log.org/?skin=yilia)
 
-欢迎在[该 issue](https://github.com/88250/solo/issues/12449) 下推荐好看的皮肤，我们会尽量进行制作。
+欢迎在[这里](https://github.com/88250/solo/issues/2)推荐好看的皮肤，我们会尽量进行制作。
 
 ## 🛠️ 安装
 
@@ -126,22 +130,32 @@ Solo 支持“动静两用”：
 * 动态博客：在服务器上搭建，进程常驻内存运行，在线使用
 * 静态博客：在本地电脑运行，写作完成后生成导出静态站点
 
+### 视频教程
+
+* [本地 localhost 搭建](https://www.bilibili.com/video/BV1tK411n7R3)
+* [通过 IntelliJ IDEA 搭建](https://www.bilibili.com/video/BV1jD4y1S7Ez)
+* [服务器上通过 Docker 搭建](https://www.bilibili.com/video/BV1Yk4y1q7rV)
+
+更多视频教程陆续制作中，欢迎到 B 站关注我：[报废程序员D](https://space.bilibili.com/526767010)。
+
 ### 本地运行
 
-本地运行主要用于试用或者生成静态站点，生成静态站点的用法请参考[这里](https://hacpai.com/article/1579053576274)。
+本地运行主要用于试用或者生成静态站点，生成静态站点的用法请参考[这里](https://ld246.com/article/1579053576274)。
+
+（视频演示教程请看[这里](https://www.bilibili.com/video/BV1tK411n7R3)）
 
 [下载](https://github.com/88250/solo/releases)最新的 Solo 包解压，进入解压目录执行：
 
 * Windows: `java -cp "lib/*;." org.b3log.solo.Server`
 * Unix-like： `java -cp "lib/*:." org.b3log.solo.Server`
 
-如果你有 Java 开发环境，可参考[这里](https://hacpai.com/article/1493822943172)通过源码构建运行。
-
-本地运行
+如果你有 Java 开发环境，可参考[这里](https://ld246.com/article/1493822943172)通过源码构建运行（视频演示教程请看[这里](https://www.bilibili.com/video/BV1jD4y1S7Ez)）。
 
 ### Docker 部署
 
 Docker 方式部署是动态博客用法，主要用于在服务器上部署动态博客。
+
+（视频演示教程请看[这里](https://www.bilibili.com/video/BV1Yk4y1q7rV)）
 
 #### 获取最新镜像
 
@@ -151,8 +165,21 @@ docker pull b3log/solo
 
 #### 启动容器
 
+****注意****：对于如下命令，如果你不确定如何使用 `\` 来进行换行，就不要换行了，一行内写完整条命令。
+
 * 使用 MySQL
-  先手动建库（库名 `solo` ，字符集使用 `utf8mb4` ，排序规则 `utf8mb4_general_ci` ），然后启动容器：
+
+  手动建库（库名 `solo` ，字符集使用 `utf8mb4` ，排序规则 `utf8mb4_general_ci` ）：
+  
+  ```sql
+  create database solo default character set utf8mb4 collate utf8mb4_general_ci;
+  create user 'root'@'127.0.0.1' identified by '123456';
+  grant all privileges on *.* to 'root'@'127.0.0.1';
+  flush privileges;
+  ```
+  
+  启动容器：
+
   ```shell
   docker run --detach --name solo --network=host \
       --env RUNTIME_DB="MYSQL" \
@@ -165,6 +192,7 @@ docker pull b3log/solo
 
   为了简单，使用了主机网络模式来连接主机上的 MySQL。
 * 使用 H2 Database
+
   ```shell
   docker run --detach --name solo --volume ~/solo_h2/:/opt/solo/h2/ --publish 8080:8080 \
       --env RUNTIME_DB="H2" \
@@ -177,10 +205,10 @@ docker pull b3log/solo
 
 启动参数说明：
 
-* `--listen_port` ：进程监听端口
-* `--server_scheme` ：最终访问协议，如果反代服务启用了 HTTPS 这里也需要改为 `https`
-* `--server_host` ：最终访问域名或公网 IP，不要带端口
-* `--server_port` ：最终访问端口，使用浏览器默认的 80 或者 443 的话值留空即可
+* `--listen_port`：进程监听端口
+* `--server_scheme`：最终访问协议，如果反代服务启用了 HTTPS 这里也需要改为 `https`
+* `--server_host`：最终访问域名或公网 IP，不要带端口
+* `--server_port`：最终访问端口，使用浏览器默认的 80 或者 443 的话值留空即可
 
 完整启动参数的说明可以使用 `-h` 来查看。
 
@@ -192,9 +220,9 @@ docker pull b3log/solo
 --volume ~/log4j2.xml:/opt/solo/log4j2.xml
 ```
 
-#### 皮肤配置
+#### 挂载第三方皮肤
 
-如果要使用其他皮肤，可以挂载目录 skins（里面需要包含所需使用的所有皮肤）：
+如果需要使用第三方皮肤，可以挂载目录 skins，目录结构请参考原版 skins：
 
 ```shell
 --volume ~/skins/:/opt/solo/skins/
@@ -240,30 +268,30 @@ proxy_set_header  Host $http_host;
 proxy_set_header  X-Real-IP $remote_addr;
 ```
 
-否则访问页面可能会出现“Latke 配置错误”；统计在线访客功能会不正常。
+否则访问页面可能会出现“Latke 配置错误”或者样式异常；统计在线访客功能会不正常。
 
 ## 📜 文档
 
-* [《提问的智慧》精读注解版](https://hacpai.com/article/1536377163156)
-* [从零开始安装 Solo 博客](https://hacpai.com/article/1565021959471)（感谢 @InkDP 分享）
-* [用户指南](https://hacpai.com/article/1492881378588)
-* [Solo 从设计到实现](https://hacpai.com/article/1537690756242)
-* [皮肤开发指南](https://hacpai.com/article/1493814851007)
+* [《提问的智慧》精读注解版](https://ld246.com/article/1536377163156)
+* [从零开始安装 Solo 博客](https://ld246.com/article/1565021959471)（感谢 @InkDP 分享）
+* [Solo 用户指南](https://ld246.com/article/1492881378588)
+* [Solo 从设计到实现](https://ld246.com/article/1537690756242)
+* [Solo 皮肤开发指南](https://ld246.com/article/1493814851007)
 * [插件开发](https://docs.google.com/document/pub?id=15H7Q3EBo-44v61Xp_epiYY7vK_gPJLkQaT7T1gkE64w&pli=1)
 
 ## 🏘️ 社区
 
-* [讨论区](https://hacpai.com/tag/solo)
+* [讨论区](https://ld246.com/tag/solo)
 * [报告问题](https://github.com/88250/solo/issues/new/choose)
 
 ## 📄 授权
 
-Solo 使用 [GNU Affero General Public License, Version 3](https://www.gnu.org/licenses/agpl-3.0.txt) 开源协议。
+Solo 使用 [木兰宽松许可证, 第2版](http://license.coscl.org.cn/MulanPSL2) 开源协议。
 
 ## 🙏 鸣谢
 
 * [jQuery](https://github.com/jquery/jquery)：前端 JavaScript 工具库
-* [Vditor](https://github.com/88250/vditor)： 浏览器端的 Markdown 编辑器
+* [Vditor](https://github.com/88250/vditor)：浏览器端的 Markdown 编辑器
 * [Highlight.js](https://github.com/isagalaev/highlight.js)：前端代码高亮库
 * [pjax](https://github.com/defunkt/jquery-pjax)：pushState + AJAX = pjax
 * [jsoup](https://github.com/jhy/jsoup)：Java HTML 解析器
@@ -299,16 +327,24 @@ Solo 使用 [GNU Affero General Public License, Version 3](https://www.gnu.org/l
 
 ## 导入 Markdown
 
-请参考 [Solo 支持 Hexo/Jekyll 数据导入](https://hacpai.com/article/1498490209748)。
+请参考 [Solo 支持 Hexo/Jekyll 数据导入](https://ld246.com/article/1498490209748)。
 
 ## 备份
 
 安全第一，血泪的教训 😢
 
-* H2：备份用户 home 目录下的 solo\_h2 文件夹
+### 手动备份
+
+* H2：备份 home 目录下的 solo\_h2 文件夹
 * MySQL：使用 MySQL 相关备份工具
 
-另外，如果开启了自动备份社区功能，则会定时 24 小时自动备份所有文章到社区，请参考 [Solo 拉取 GitHub 仓库和自动备份](https://hacpai.com/article/1557238327458)。
+### 社区端备份
+
+可在工具 - 偏好设定 - 参数设置中勾选“备份所有文章到社区”，开启后将每隔 24 小时自动备份所有文章（包括草稿和加密文章）到社区，具体细节请参考 [Solo 拉取 GitHub 仓库和自动备份](https://ld246.com/article/1557238327458)。
+
+### GitHub 备份
+
+可在工具 - 偏好设定 - 参数设置中填写 GitHub token，填写后将每隔 24 小时自动备份公开文章（不包括草稿和加密文章）到你的 GitHub  仓库 `solo-blog`，具体细节请参考 [solo-blog 仓库同步功能回来了](https://ld246.com/article/1589995001682)。
 
 ## 其他一些特性
 
@@ -343,9 +379,24 @@ Solo 使用 [GNU Affero General Public License, Version 3](https://www.gnu.org/l
 
 “站外相关文章”指的是其他人使用 Solo 发布的文章，该文章含有与你的文章相同的标签。该功能主要是为了加强各个 Solo 博客之间的互动性，让博客访问者可以更有效地访问到相关的内容。
 
-这是 [B3log 构思](https://hacpai.com/b3log)的一部分实现，请大家积极参与进来 🙏
+这是 [B3log 构思](https://ld246.com/b3log)的一部分实现，请大家积极参与进来 🙏
 
 ## FAQ
+
+### 为什么要“捆绑”登录链滴社区账号？
+
+Solo 和 Pipe 的定位是 B3log 分布式社区的博客端节点，并不是通常意义上的独立博客，所以账号体系需要进行统一，否则带来的问题会很多，这也是一路下来探索的，具体经历细节请看[这里](https://ld246.com/article/1576294445994)。
+
+在 Solo v3 之前一直是独立账号体系，但经过长时间验证效果并不理想：
+
+* 不方便，用户需要在社区端和博客端配置账号关联关系
+* 不安全，账号的关联关系需要双向验证，如果不验证账号归属，会被冒名
+
+这两个问题是矛盾的，所以为了解决它需要将账号在 B3log 网络中进行唯一化。一开始的设计方案是通过公私钥（类似区块链的钱包原理），但这个方案在现阶段过于复杂，用户使用门槛有点高所以暂时放弃了。公私钥的方案在星火项目里进行过测试验证，技术上应该没问题，以后的鱼塘项目可能会采用这个方案。
+
+所以再次重申一下，Solo 和 Pipe 是 B3log 分布式社区的博客端节点。举个最容易理解的例子，这就好比某些厂商的软件，没有这个厂商的账号是用不了的。打通其他网络的方案是在博客端或者社区端接入其他网络的账号，目前已经在链滴社区上接入 GitHub 登录（可在账号设置中[绑定](https://ld246.com/settings/account)），Solo 可通过 GitHub token 来将文章[同步到自己的仓库](https://ld246.com/article/1589995001682)，避免整个 B3log 网络过度封闭内卷。
+
+最后，希望目前加入到 B3log 的用户是认可这个设计的，如果不认可的话其实就没必要加入使用了，节省自己时间同时也能保护 B3log。当然，不排除以后设计还会有所变化，欢迎参与思考讨论，谢谢。
 
 ### 服务器内存太小？
 
@@ -353,9 +404,18 @@ Solo 使用 [GNU Affero General Public License, Version 3](https://www.gnu.org/l
 
 如果还是想使用动态博客的话，可使用内嵌的 H2 数据库代替 MySQL。但建议还是进行内存升级，然后使用 Docker 和 MySQL 部署，这样不仅可以通过更新镜像进行平滑升级，还能使用 MySQL 相关工具更方便地进行数据库运维。
 
+### 如何打 jar 包部署？
+
+请在 pom.xml 中搜索 `maven-assembly-plugin` 的注释进行配置即可。请注意：使用 jar 运行不支持：
+
+* 静态站点生成
+* 可能存在其他未知问题
+
+建议尽量不要打 jar 部署，服务器上请通过 Docker 部署。
+
 ### 获取社区文件存储服务上传凭证异常？
 
-请参考[这里](https://hacpai.com/article/1550393688505)进行配置。
+请参考[这里](https://ld246.com/article/1550393688505)进行配置。
 
 ### 如何引入自定义静态资源，比如 .mp3？
 
@@ -363,7 +423,7 @@ Solo 使用 [GNU Affero General Public License, Version 3](https://www.gnu.org/l
 
 ### 如何获得更好的 Markdown 渲染效果？
 
-Solo 默认是使用内建的 [flexmark](https://github.com/vsch/flexmark-java) 进行 md 渲染，可能对有的场景下的渲染效果不是很好。如果你想要获得更好的 md 渲染效果请参考[这里](https://hacpai.com/article/1569240189601)。
+Solo 默认是使用内建的 [flexmark](https://github.com/vsch/flexmark-java) 进行 md 渲染，可能对有的场景下的渲染效果不是很好。如果你想要获得更好的 md 渲染效果请参考[这里](https://ld246.com/article/1569240189601)。
 
 ### 为什么在线访问计数一直都是 1？
 
@@ -402,4 +462,4 @@ Solo 从第一版开始就支持平滑升级，从 v3.0.0 开始支持跨版本�
 
 ## 结语
 
-如果你在使用 Solo 过程中碰到问题或者有需求要提，欢迎跟帖，我们会在第一时间回复；如果你对 Solo 开发方面感兴趣，请参考 [Solo 从设计到实现](https://hacpai.com/article/1537690756242)。
+如果你在使用 Solo 过程中碰到问题或者有需求要提，欢迎跟帖，我们会在第一时间回复；如果你对 Solo 开发方面感兴趣，请参考 [Solo 从设计到实现](https://ld246.com/article/1537690756242)。

@@ -3,18 +3,12 @@
     Solo - A small and beautiful blogging system written in Java.
     Copyright (c) 2010-present, b3log.org
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Solo is licensed under Mulan PSL v2.
+    You can use this software according to the terms and conditions of the Mulan PSL v2.
+    You may obtain a copy of Mulan PSL v2 at:
+            http://license.coscl.org.cn/MulanPSL2
+    THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+    See the Mulan PSL v2 for more details.
 
 -->
 <div class="module-panel">
@@ -41,9 +35,9 @@
             ${aboutContentLabel}
             <br/>
             <ul class="about-list">
-                <li><a target="_blank" href="https://hacpai.com/article/1492881378588">用户指南</a></li>
-                <li><a target="_blank" href="https://hacpai.com/article/1537690756242">Solo 从设计到实现</a></li>
-                <li><a target="_blank" href="https://hacpai.com/article/1493814851007">皮肤开发指南</a></li>
+                <li><a target="_blank" href="https://ld246.com/article/1492881378588">用户指南</a></li>
+                <li><a target="_blank" href="https://ld246.com/article/1537690756242">Solo 从设计到实现</a></li>
+                <li><a target="_blank" href="https://ld246.com/article/1493814851007">皮肤开发指南</a></li>
             </ul>
         </div>
         <span class="fn__clear" /> <br/><br/>
@@ -55,19 +49,20 @@
         <h2>❤️ 欢迎成为我们的赞助者</h2>
     </div>
     <div class="module-body padding12">
-        <a href="https://b3log.org">B3log 开源组织</a>旗下包含
-        <a href="https://sym.b3log.org/">Symphony</a>、
-        <a href="https://solo.b3log.org/">Solo</a>、
-        <a href="https://github.com/88250/pipe">Pipe</a>、
-        <a href="https://github.com/88250/wide">Wide</a>、
-        <a href="https://github.com/88250/latke">Latke</a>、
-        <a href="https://github.com/vanessa219/vditor">Vditor</a>、
-        <a href="https://github.com/88250/gulu">Gulu</a>&nbsp;等一系列开源项目。随着项目规模的增长，我们需要有相应的资金支持才能持续项目的维护和开发。
-        <br/> <br/>
-        如果你觉得 Solo 还算好用，可通过支付宝对我们进行赞助，谢谢 🙏
+        我们创造了
+        <a href="https://b3log.org/sym" target="_blank">Symphony</a>、<a
+                href="https://b3log.org/solo" target="_blank">Solo</a>、<a
+                href="https://github.com/88250/pipe" target="_blank">Pipe</a>、<a
+                href="https://github.com/88250/wide" target="_blank">Wide</a>、<a
+                href="https://github.com/88250/latke" target="_blank">Latke</a>、<a
+                href="https://b3log.org/vditor" target="_blank">Vditor</a>、<a
+                href="https://github.com/88250/lute" target="_blank">Lute</a>、<a
+                href="https://github.com/88250/gulu" target="_blank">Gulu</a>、<a
+                href="https://b3log.org/siyuan" target="_blank">思源笔记</a>
+        等一系列开源项目和产品。随着项目规模的增长，我们需要相应的资金支持才能持续维护和开发，请帮助我们！
         <br/> <br/>
         <div class="ft__center">
-            <button class="fn__flex-inline" onclick="window.open('https://hacpai.com/sponsor')">
+            <button class="fn__flex-inline" onclick="window.open('https://ld246.com/sponsor')">
                 <svg viewBox="0 0 32 32" width="100%" height="100%"
                      className={classes.svg}>
                     <path

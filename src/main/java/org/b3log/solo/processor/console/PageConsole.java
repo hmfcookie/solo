@@ -2,18 +2,12 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 package org.b3log.solo.processor.console;
 
@@ -35,14 +29,16 @@ import org.b3log.solo.service.PageMgmtService;
 import org.b3log.solo.service.PageQueryService;
 import org.b3log.solo.service.UserQueryService;
 import org.b3log.solo.util.Solos;
-import org.json.JSONArray;
+import org.b3log.solo.util.StatusCodes;
 import org.json.JSONObject;
 
+import java.util.List;
+
 /**
- * Plugin console request processing.
+ * Page console request processing.
  *
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.0.0.0, Feb 9, 2020
+ * @version 2.0.1.0, Jun 5, 2020
  * @since 0.4.0
  */
 @Singleton
@@ -98,7 +94,7 @@ public class PageConsole {
      * Renders the response with a json object, for example,
      * <pre>
      * {
-     *     "sc": boolean,
+     *     "code": int,
      *     "msg": ""
      * }
      * </pre>
@@ -115,13 +111,12 @@ public class PageConsole {
             final JSONObject requestJSON = context.requestJSON();
             pageMgmtService.updatePage(requestJSON);
 
-            ret.put(Keys.STATUS_CODE, true);
+            ret.put(Keys.CODE, StatusCodes.SUCC);
             ret.put(Keys.MSG, langPropsService.get("updateSuccLabel"));
             renderer.setJSONObject(ret);
         } catch (final ServiceException e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
-
-            final JSONObject jsonObject = new JSONObject().put(Keys.STATUS_CODE, false);
+            final JSONObject jsonObject = new JSONObject().put(Keys.CODE, StatusCodes.ERR);
             renderer.setJSONObject(jsonObject);
             jsonObject.put(Keys.MSG, langPropsService.get("updateFailLabel"));
         }
@@ -133,7 +128,7 @@ public class PageConsole {
      * Renders the response with a json object, for example,
      * <pre>
      * {
-     *     "sc": boolean,
+     *     "code": int,
      *     "msg": ""
      * }
      * </pre>
@@ -151,12 +146,11 @@ public class PageConsole {
             final String pageId = context.pathVar("id");
             pageMgmtService.removePage(pageId);
 
-            jsonObject.put(Keys.STATUS_CODE, true);
+            jsonObject.put(Keys.CODE, StatusCodes.SUCC);
             jsonObject.put(Keys.MSG, langPropsService.get("removeSuccLabel"));
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
-
-            jsonObject.put(Keys.STATUS_CODE, false);
+            jsonObject.put(Keys.CODE, StatusCodes.ERR);
             jsonObject.put(Keys.MSG, langPropsService.get("removeFailLabel"));
 
         }
@@ -181,7 +175,7 @@ public class PageConsole {
      * Renders the response with a json object, for example,
      * <pre>
      * {
-     *     "sc": boolean,
+     *     "code": int,
      *     "oId": "", // Generated page id
      *     "msg": ""
      * }
@@ -201,14 +195,13 @@ public class PageConsole {
 
             ret.put(Keys.OBJECT_ID, pageId);
             ret.put(Keys.MSG, langPropsService.get("addSuccLabel"));
-            ret.put(Keys.STATUS_CODE, true);
+            ret.put(Keys.CODE, StatusCodes.SUCC);
             renderer.setJSONObject(ret);
         } catch (final ServiceException e) { // May be permalink check exception
             LOGGER.log(Level.WARN, e.getMessage(), e);
-
-            final JSONObject jsonObject = new JSONObject().put(Keys.STATUS_CODE, false);
+            final JSONObject jsonObject = new JSONObject().put(Keys.CODE, StatusCodes.ERR);
             renderer.setJSONObject(jsonObject);
-            jsonObject.put(Keys.MSG, langPropsService.get("updateFailLabel"));
+            jsonObject.put(Keys.MSG, e.getMessage());
         }
     }
 
@@ -227,7 +220,7 @@ public class PageConsole {
      * Renders the response with a json object, for example,
      * <pre>
      * {
-     *     "sc": boolean,
+     *     "code": int,
      *     "msg": ""
      * }
      * </pre>
@@ -244,17 +237,13 @@ public class PageConsole {
             final JSONObject requestJSONObject = context.requestJSON();
             final String linkId = requestJSONObject.getString(Keys.OBJECT_ID);
             final String direction = requestJSONObject.getString(Common.DIRECTION);
-
             pageMgmtService.changeOrder(linkId, direction);
-
-            ret.put(Keys.STATUS_CODE, true);
+            ret.put(Keys.CODE, StatusCodes.SUCC);
             ret.put(Keys.MSG, langPropsService.get("updateSuccLabel"));
-
             renderer.setJSONObject(ret);
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
-
-            final JSONObject jsonObject = new JSONObject().put(Keys.STATUS_CODE, false);
+            final JSONObject jsonObject = new JSONObject().put(Keys.CODE, StatusCodes.ERR);
             renderer.setJSONObject(jsonObject);
             jsonObject.put(Keys.MSG, langPropsService.get("updateFailLabel"));
         }
@@ -266,7 +255,7 @@ public class PageConsole {
      * Renders the response with a json object, for example,
      * <pre>
      * {
-     *     "sc": boolean
+     *     "code": int,
      *     "page": {
      *         "oId": "",
      *         "pageTitle": "",
@@ -288,18 +277,16 @@ public class PageConsole {
             final String pageId = context.pathVar("id");
             final JSONObject result = pageQueryService.getPage(pageId);
             if (null == result) {
-                renderer.setJSONObject(new JSONObject().put(Keys.STATUS_CODE, false));
-
+                renderer.setJSONObject(new JSONObject().put(Keys.CODE, StatusCodes.ERR));
                 return;
             }
 
             renderer.setJSONObject(result);
-            result.put(Keys.STATUS_CODE, true);
+            result.put(Keys.CODE, StatusCodes.SUCC);
             result.put(Keys.MSG, langPropsService.get("getSuccLabel"));
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
-
-            final JSONObject jsonObject = new JSONObject().put(Keys.STATUS_CODE, false);
+            final JSONObject jsonObject = new JSONObject().put(Keys.CODE, StatusCodes.ERR);
             renderer.setJSONObject(jsonObject);
             jsonObject.put(Keys.MSG, langPropsService.get("getFailLabel"));
         }
@@ -322,7 +309,7 @@ public class PageConsole {
      *         "pagePermalink": "",
      *         .{@link PageMgmtService...}
      *      }, ....]
-     *     "sc": "GET_PAGES_SUCC"
+     *     "code": 0
      * }
      * </pre>
      * </p>
@@ -338,21 +325,18 @@ public class PageConsole {
             final String path = requestURI.substring((Latkes.getContextPath() + "/console/pages/").length());
             final JSONObject requestJSONObject = Solos.buildPaginationRequest(path);
             final JSONObject result = pageQueryService.getPages(requestJSONObject);
-            final JSONArray pages = result.optJSONArray(Page.PAGES);
-
-            for (int i = 0; i < pages.length(); i++) {
-                final JSONObject page = pages.getJSONObject(i);
+            final List<JSONObject> pages = (List<JSONObject>) result.opt(Page.PAGES);
+            for (final JSONObject page : pages) {
                 String title = page.optString(Page.PAGE_TITLE);
                 title = StringEscapeUtils.escapeXml(title);
                 page.put(Page.PAGE_TITLE, title);
             }
 
-            result.put(Keys.STATUS_CODE, true);
+            result.put(Keys.CODE, StatusCodes.SUCC);
             renderer.setJSONObject(result);
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
-
-            final JSONObject jsonObject = new JSONObject().put(Keys.STATUS_CODE, false);
+            final JSONObject jsonObject = new JSONObject().put(Keys.CODE, StatusCodes.ERR);
             renderer.setJSONObject(jsonObject);
             jsonObject.put(Keys.MSG, langPropsService.get("getFailLabel"));
         }

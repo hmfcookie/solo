@@ -2,18 +2,12 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 package org.b3log.solo.processor;
 
@@ -39,12 +33,13 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * Blog processor.
  *
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.0.0.0, Feb 9, 2020
+ * @version 2.0.0.1, Apr 15, 2020
  * @since 0.4.6
  */
 @Singleton
@@ -152,7 +147,12 @@ public class BlogProcessor {
         jsonObject.put("tagCount", tagQueryService.getTagCount());
         jsonObject.put("servePath", Latkes.getServePath());
         jsonObject.put("staticServePath", Latkes.getStaticServePath());
-        jsonObject.put("version", Server.VERSION);
+        String version = Server.VERSION;
+        final String gitCommit = System.getenv("git_commit");
+        if (StringUtils.isNotBlank(gitCommit)) {
+            version += ", commit " + gitCommit;
+        }
+        jsonObject.put("version", version);
         jsonObject.put("runtimeMode", Latkes.getRuntimeMode());
         jsonObject.put("runtimeDatabase", Latkes.getRuntimeDatabase());
         jsonObject.put("locale", Latkes.getLocale());
@@ -196,7 +196,7 @@ public class BlogProcessor {
         requestJSONObject.put(Keys.EXCLUDES, excludes);
 
         final JSONObject result = articleQueryService.getArticles(requestJSONObject);
-        final JSONArray articles = result.optJSONArray(Article.ARTICLES);
+        final List<JSONObject> articles = (List<JSONObject>) result.opt(Article.ARTICLES);
 
         final JsonRenderer renderer = new JsonRenderer();
         context.setRenderer(renderer);
@@ -206,8 +206,7 @@ public class BlogProcessor {
         final JSONArray data = new JSONArray();
         ret.put("data", data);
 
-        for (int i = 0; i < articles.length(); i++) {
-            final JSONObject article = articles.optJSONObject(i);
+        for (final JSONObject article : articles) {
             final String tagString = article.optString(Article.ARTICLE_TAGS_REF);
 
             final JSONArray tagArray = new JSONArray();

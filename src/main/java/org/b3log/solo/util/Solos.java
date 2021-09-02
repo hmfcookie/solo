@@ -2,18 +2,12 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 package org.b3log.solo.util;
 
@@ -43,8 +37,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -52,7 +44,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Solo utilities.
  *
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 1.10.0.0, Jan 11, 2020
+ * @version 1.11.0.2, Apr 21, 2021
  * @since 2.8.0
  */
 public final class Solos {
@@ -61,11 +53,6 @@ public final class Solos {
      * Logger.
      */
     private static final Logger LOGGER = LogManager.getLogger(Solos.class);
-
-    /**
-     * Favicon API.
-     */
-    public static final String FAVICON_API;
 
     /**
      * Solo User-Agent.
@@ -93,17 +80,6 @@ public final class Solos {
     public static boolean GEN_STATIC_SITE = false;
 
     static {
-        ResourceBundle solo;
-        try {
-            solo = ResourceBundle.getBundle("solo");
-        } catch (final MissingResourceException e) {
-            solo = ResourceBundle.getBundle("b3log"); // 2.8.0 向后兼容
-        }
-
-        FAVICON_API = solo.getString("faviconAPI");
-    }
-
-    static {
         String cookieNameConf = Latkes.getLatkeProperty("cookieName");
         if (StringUtils.isBlank(cookieNameConf)) {
             cookieNameConf = "solo";
@@ -118,6 +94,38 @@ public final class Solos {
     }
 
     /**
+     * Gets community user info.
+     *
+     * @param accessToken the specified access token
+     * @return community user info, for example, <pre>
+     * {
+     *   "userId": "",
+     *   "userName": "D",
+     *   "userAvatar": ""
+     * }
+     * </pre>, returns {@code null} if not found QQ user info
+     */
+    public static JSONObject getUserInfo(final String accessToken) {
+        try {
+            final HttpResponse res = HttpRequest.post("https://ld246.com/user/ak").
+                    form("access_token", accessToken).trustAllCerts(true).followRedirects(true).
+                    connectionTimeout(3000).timeout(7000).header("User-Agent", Solos.USER_AGENT).send();
+            if (200 != res.statusCode()) {
+                return null;
+            }
+            res.charset("UTF-8");
+            final JSONObject result = new JSONObject(res.bodyText());
+            if (0 != result.optInt(Keys.CODE)) {
+                return null;
+            }
+            return result.optJSONObject(Common.DATA);
+        } catch (final Exception e) {
+            LOGGER.log(Level.ERROR, "Gets community user info failed", e);
+            return null;
+        }
+    }
+
+    /**
      * Blacklist IPs.
      */
     public static final List<String> BLACKLIST_IPS = new CopyOnWriteArrayList<>();
@@ -127,7 +135,8 @@ public final class Solos {
      */
     public static void reloadBlacklistIPs() {
         try {
-            final HttpResponse res = HttpRequest.get("https://hacpai.com/apis/blacklist/ip").trustAllCerts(true).
+            final HttpResponse res = HttpRequest.get("https://ld246.com/apis/blacklist/ip").
+                    trustAllCerts(true).followRedirects(true).
                     connectionTimeout(3000).timeout(7000).header("User-Agent", Solos.USER_AGENT).send();
             if (200 != res.statusCode()) {
                 return;
@@ -177,7 +186,7 @@ public final class Solos {
     private static long uploadTokenCheckTime;
     private static long uploadTokenTime;
     private static String uploadToken = "";
-    private static String uploadURL = "https://hacpai.com/upload/client";
+    private static String uploadURL = "https://ld246.com/upload/client";
     private static String uploadMsg = "";
 
     /**
@@ -215,7 +224,7 @@ public final class Solos {
             }
 
             final JSONObject requestJSON = new JSONObject().put(User.USER_NAME, userName).put(UserExt.USER_B3_KEY, userB3Key);
-            final HttpResponse res = HttpRequest.post("https://hacpai.com/apis/upload/token").trustAllCerts(true).
+            final HttpResponse res = HttpRequest.post("https://ld246.com/apis/upload/token").trustAllCerts(true).followRedirects(true).
                     body(requestJSON.toString()).connectionTimeout(3000).timeout(7000).header("User-Agent", Solos.USER_AGENT).send();
             uploadTokenCheckTime = now;
             if (200 != res.statusCode()) {
@@ -226,7 +235,6 @@ public final class Solos {
             if (0 != result.optInt(Keys.CODE)) {
                 uploadMsg = result.optString(Keys.MSG);
                 LOGGER.log(Level.ERROR, uploadMsg);
-
                 return null;
             }
 
@@ -235,14 +243,12 @@ public final class Solos {
             uploadToken = data.optString("uploadToken");
             uploadURL = data.optString("uploadURL");
             uploadMsg = "";
-
             return new JSONObject().
                     put(Common.UPLOAD_TOKEN, uploadToken).
                     put(Common.UPLOAD_URL, uploadURL).
                     put(Common.UPLOAD_MSG, uploadMsg);
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, "Gets upload token failed", e);
-
             return null;
         }
     }

@@ -3,18 +3,12 @@
     Solo - A small and beautiful blogging system written in Java.
     Copyright (c) 2010-present, b3log.org
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    Solo is licensed under Mulan PSL v2.
+    You can use this software according to the terms and conditions of the Mulan PSL v2.
+    You may obtain a copy of Mulan PSL v2 at:
+            http://license.coscl.org.cn/MulanPSL2
+    THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+    See the Mulan PSL v2 for more details.
 
 -->
 <#include "../common-template/macro-common_head.ftl"/>
@@ -77,13 +71,6 @@
                         </div>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <div id="tabs_comment-list">
-                    <a href="#comment-list">
-                        <span class="icon-cmts"></span> ${commentListLabel}
-                    </a>
-                </div>
             </li>
             <li id="tools">
                 <div id="tabToolsTitle" onclick="admin.collapseNav(this)">
@@ -169,10 +156,11 @@
     <div class="fn__clear"></div>
     <div class="footer">
         Powered by <a href="https://b3log.org" target="_blank">B3log 开源</a> •
-        <a href="https://solo.b3log.org" target="_blank">Solo</a> ${version}
+        <a href="https://b3log.org/solo" target="_blank">Solo</a> ${version}
     </div>
 </div>
 <#include "admin-label.ftl">
+<script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/index.min.js"></script>
 <script src="${staticServePath}/js/admin/admin.min.js?${staticResourceVersion}"></script>
 ${plugins}
 <script>

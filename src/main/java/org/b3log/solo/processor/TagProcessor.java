@@ -2,18 +2,12 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 package org.b3log.solo.processor;
 
@@ -44,7 +38,7 @@ import java.util.Map;
  * Tag processor.
  *
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.0.0.0, Feb 9, 2020
+ * @version 2.0.0.1, Apr 18, 2020
  * @since 0.3.1
  */
 @Singleton
@@ -92,12 +86,6 @@ public class TagProcessor {
     private TagQueryService tagQueryService;
 
     /**
-     * Statistic management service.
-     */
-    @Inject
-    private StatisticMgmtService statisticMgmtService;
-
-    /**
      * Shows articles related with a tag with the specified context.
      *
      * @param context the specified context
@@ -113,7 +101,6 @@ public class TagProcessor {
             final JSONObject result = tagQueryService.getTagByTitle(tagTitle);
             if (null == result) {
                 context.sendError(404);
-
                 return;
             }
 
@@ -121,14 +108,13 @@ public class TagProcessor {
             final String tagId = tag.getString(Keys.OBJECT_ID);
 
             final JSONObject preference = optionQueryService.getPreference();
-            Skins.fillLangs(preference.optString(Option.ID_C_LOCALE_STRING), (String) context.attr(Keys.TEMAPLTE_DIR_NAME), dataModel);
+            Skins.fillLangs(preference.optString(Option.ID_C_LOCALE_STRING), (String) context.attr(Keys.TEMPLATE_DIR_NAME), dataModel);
 
             final int pageSize = preference.getInt(Option.ID_C_ARTICLE_LIST_DISPLAY_COUNT);
             final int windowSize = preference.getInt(Option.ID_C_ARTICLE_LIST_PAGINATION_WINDOW_SIZE);
             final JSONObject tagArticleResult = articleQueryService.getArticlesByTag(tagId, currentPageNum, pageSize);
             if (null == tagArticleResult) {
                 context.sendError(404);
-
                 return;
             }
 
@@ -144,7 +130,6 @@ public class TagProcessor {
             dataModelService.fillCommon(context, dataModel, preference);
             dataModelService.fillFaviconURL(dataModel, preference);
             dataModelService.fillUsite(dataModel);
-            statisticMgmtService.incBlogViewCount(context, context.getResponse());
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
 

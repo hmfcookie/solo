@@ -2,18 +2,12 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 package org.b3log.solo.processor;
 
@@ -39,6 +33,7 @@ import org.b3log.solo.model.Common;
 import org.b3log.solo.model.Option;
 import org.b3log.solo.service.*;
 import org.b3log.solo.util.Skins;
+import org.b3log.solo.util.StatusCodes;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,7 +44,7 @@ import java.util.Map;
  * Category processor.
  *
  * @author <a href="http://88250.b3log.org">Liang Ding</a>
- * @version 2.0.0.1, Feb 27, 2020
+ * @version 2.0.0.2, Apr 18, 2020
  * @since 2.0.0
  */
 @Singleton
@@ -97,12 +92,6 @@ public class CategoryProcessor {
     private CategoryQueryService categoryQueryService;
 
     /**
-     * Statistic management service.
-     */
-    @Inject
-    private StatisticMgmtService statisticMgmtService;
-
-    /**
      * Gets category articles paged with the specified context.
      *
      * @param context the specified context
@@ -118,11 +107,10 @@ public class CategoryProcessor {
             final JSONObject category = categoryQueryService.getByURI(categoryURI);
             if (null == category) {
                 context.sendError(404);
-
                 return;
             }
 
-            jsonObject.put(Keys.STATUS_CODE, true);
+            jsonObject.put(Keys.CODE, StatusCodes.SUCC);
             final String categoryId = category.optString(Keys.OBJECT_ID);
             final JSONObject preference = optionQueryService.getPreference();
             final int pageSize = preference.getInt(Option.ID_C_ARTICLE_LIST_DISPLAY_COUNT);
@@ -138,7 +126,7 @@ public class CategoryProcessor {
             result.put(Article.ARTICLES, articles);
             jsonObject.put(Keys.RESULTS, result);
         } catch (final Exception e) {
-            jsonObject.put(Keys.STATUS_CODE, false);
+            jsonObject.put(Keys.CODE, StatusCodes.ERR);
             LOGGER.log(Level.ERROR, "Gets article paged failed", e);
         } finally {
             Stopwatchs.end();
@@ -167,7 +155,6 @@ public class CategoryProcessor {
             final JSONObject category = categoryQueryService.getByURI(categoryURI);
             if (null == category) {
                 context.sendError(404);
-
                 return;
             }
 
@@ -183,11 +170,10 @@ public class CategoryProcessor {
             final int pageCount = result.optJSONObject(Pagination.PAGINATION).optInt(Pagination.PAGINATION_PAGE_COUNT);
             if (0 == pageCount) {
                 context.sendError(404);
-
                 return;
             }
 
-            Skins.fillLangs(preference.optString(Option.ID_C_LOCALE_STRING), (String) context.attr(Keys.TEMAPLTE_DIR_NAME), dataModel);
+            Skins.fillLangs(preference.optString(Option.ID_C_LOCALE_STRING), (String) context.attr(Keys.TEMPLATE_DIR_NAME), dataModel);
             dataModelService.setArticlesExProperties(context, articles, preference);
 
             final List<Integer> pageNums = (List) result.optJSONObject(Pagination.PAGINATION).opt(Pagination.PAGINATION_PAGE_NUMS);
@@ -197,8 +183,6 @@ public class CategoryProcessor {
             dataModelService.fillCommon(context, dataModel, preference);
             dataModelService.fillFaviconURL(dataModel, preference);
             dataModelService.fillUsite(dataModel);
-
-            statisticMgmtService.incBlogViewCount(context, response);
         } catch (final ServiceException | JSONException e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
 

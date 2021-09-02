@@ -2,18 +2,12 @@
  * Solo - A small and beautiful blogging system written in Java.
  * Copyright (c) 2010-present, b3log.org
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * Solo is licensed under Mulan PSL v2.
+ * You can use this software according to the terms and conditions of the Mulan PSL v2.
+ * You may obtain a copy of Mulan PSL v2 at:
+ *         http://license.coscl.org.cn/MulanPSL2
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+ * See the Mulan PSL v2 for more details.
  */
 package org.b3log.solo.processor.console;
 
@@ -41,18 +35,16 @@ public class PageConsoleTestCase extends AbstractTestCase {
 
     /**
      * addPage.
-     *
-     * @throws Exception exception
      */
-    public void addPage() throws Exception {
+    public void addPage() {
         final MockRequest request = mockRequest();
         request.setRequestURI("/console/page/");
         request.setMethod("POST");
         final JSONObject requestJSON = new JSONObject();
         final JSONObject page = new JSONObject();
         requestJSON.put(Page.PAGE, page);
-        page.put(Page.PAGE_TITLE, "黑客派");
-        page.put(Page.PAGE_PERMALINK, "https://hacpai.com");
+        page.put(Page.PAGE_TITLE, "链滴");
+        page.put(Page.PAGE_PERMALINK, "https://ld246.com");
         page.put(Page.PAGE_OPEN_TARGET, "");
         page.put(Page.PAGE_ICON, "");
         request.setJSON(requestJSON);
@@ -63,7 +55,7 @@ public class PageConsoleTestCase extends AbstractTestCase {
         mockDispatcher(request, response);
 
         final String content = response.getString();
-        Assert.assertTrue(StringUtils.contains(content, "sc\":true"));
+        Assert.assertTrue(StringUtils.contains(content, "code\":0"));
     }
 
     /**
@@ -88,7 +80,7 @@ public class PageConsoleTestCase extends AbstractTestCase {
         mockDispatcher(request, response);
 
         final String content = response.getString();
-        Assert.assertTrue(StringUtils.contains(content, "sc\":true"));
+        Assert.assertTrue(StringUtils.contains(content, "code\":0"));
     }
 
     /**
@@ -115,7 +107,7 @@ public class PageConsoleTestCase extends AbstractTestCase {
         mockDispatcher(request, response);
 
         final String content = response.getString();
-        Assert.assertTrue(StringUtils.contains(content, "sc\":true"));
+        Assert.assertTrue(StringUtils.contains(content, "code\":0"));
     }
 
     /**
@@ -137,7 +129,7 @@ public class PageConsoleTestCase extends AbstractTestCase {
         mockDispatcher(request, response);
 
         final String content = response.getString();
-        Assert.assertTrue(StringUtils.contains(content, "sc\":true"));
+        Assert.assertTrue(StringUtils.contains(content, "code\":0"));
     }
 
     /**
@@ -156,7 +148,7 @@ public class PageConsoleTestCase extends AbstractTestCase {
         mockDispatcher(request, response);
 
         final String content = response.getString();
-        Assert.assertTrue(StringUtils.contains(content, "sc\":true"));
+        Assert.assertTrue(StringUtils.contains(content, "code\":0"));
     }
 
     /**
@@ -179,6 +171,6 @@ public class PageConsoleTestCase extends AbstractTestCase {
         mockDispatcher(request, response);
 
         final String content = response.getString();
-        Assert.assertTrue(StringUtils.contains(content, "sc\":true"));
+        Assert.assertTrue(StringUtils.contains(content, "code\":0"));
     }
 }
